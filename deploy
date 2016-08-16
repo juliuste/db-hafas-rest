@@ -1,0 +1,13 @@
+#!/bin/sh
+
+rsync -rav --delete \
+	--exclude '.*' \
+	--exclude node_modules \
+	. 'db-hafas:~/db-hafas-rest/'
+
+ssh db-hafas "\
+cd ~/db-hafas-rest
+npm i
+export NODE_ENV=production
+forever stop db-hafas-rest
+forever start -a --uid db-hafas-rest index.js"
