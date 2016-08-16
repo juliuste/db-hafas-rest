@@ -1,6 +1,5 @@
 'use strict'
 
-const db 	   = require('db-hafas')
 const config       = require('config')
 const fs           = require('fs')
 const express      = require('express')
@@ -10,6 +9,8 @@ const corser       = require('corser')
 const compression  = require('compression')
 const nocache      = require('nocache')
 const path         = require('path')
+
+const locations    = require('./locations')
 
 const ssl = {
 	  key:  fs.readFileSync(config.key)
@@ -29,11 +30,7 @@ api.use(compression())
 const noCache = nocache()
 
 
-api.get('/locations', function(req, res, next){
-	db.locations(req.query.q)
-	.then((data) => {res.json(data)}, next)
-	.catch(next)
-})
+api.get('/locations', locations)
 
 api.use((err, req, res, next) => {
 	if (res.headersSent) return next()
