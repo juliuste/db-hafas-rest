@@ -13,10 +13,10 @@ const err400 = (msg) => {
 
 
 module.exports = (req, res, next) => {
-	if ('string' !== typeof req.query.q)
-		return next(err400('missing q parameter.'))
+	if ('string' !== typeof req.query.query)
+		return next(err400('missing query parameter.'))
 
-	db.locations(req.query.q)
+	db.locations(req.query.query)
 	.then((data) => {res.json(data)}, next)
 	.catch(next)
 }
