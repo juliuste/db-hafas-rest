@@ -3,12 +3,11 @@
 rsync -rav --delete \
 	--exclude '.*' \
 	--exclude node_modules \
-	. 'db-hafas:~/db-hafas-rest/'
+	. 'enceladus:~/db-hafas-rest/'
 
-ssh db-hafas "\
+ssh enceladus "\
 cd ~/db-hafas-rest
 npm i
 npm update
-export NODE_ENV=production
 forever stop db-hafas-rest
 forever start -a --uid db-hafas-rest index.js"
