@@ -1,5 +1,7 @@
 # db-hafas-rest
 
+**DEPRECATED: See [`db-rest`](https://github.com/derhuerst/db-rest) instead.**
+
 A public HTTP REST API, exposing a clean interface to query Deutsche Bahn (German Railways).
 
 The public endpoint is available at `https://db-hafas.juliuste.de`.
